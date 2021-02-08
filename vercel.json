@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "env": {
+      "ACCOUNT": "avimedical",
+      "REPOSITORY": "practice-web-app",
+      "TOKEN": "@github-access-token",
+      "URL": "https://avimedical.com"
+  },
+  "builds": [
+      {
+          "src": "lib/*.js",
+          "use": "@vercel/node"
+      }
+  ],
+  "routes": [
+      {
+          "src": ".*",
+          "dest": "lib/server.js"
+      }
+  ]
+}
+
