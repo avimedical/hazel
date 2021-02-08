@@ -3,8 +3,8 @@
   "env": {
       "ACCOUNT": "avimedical",
       "REPOSITORY": "practice-web-app",
-      "TOKEN": "@github-access-token",
-      "URL": "https://avimedical.com"
+      "TOKEN": "@gh-access-token",
+      "URL": "http://localhost:3000"
   },
   "builds": [
       {
