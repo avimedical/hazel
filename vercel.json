@@ -3,7 +3,7 @@
   "env": {
       "ACCOUNT": "avimedical",
       "REPOSITORY": "practice-web-app",
-      "TOKEN": "${GH_ACCESS_TOKEN}",
+      "TOKEN": "@gh-access-token",
       "URL": "http://localhost:3000"
   },
   "builds": [
