@@ -1,66 +1,76 @@
 /* eslint-disable no-new */
 /* global describe, it, expect */
-const Cache = require('../lib/cache')
+const Cache = require("../lib/cache");
 
-describe('Cache', () => {
-  it('should throw when account is not defined', () => {
+describe("Cache", () => {
+  it("should throw when account is not defined", () => {
     expect(() => {
-      const config = { repository: 'hyper' }
-      new Cache(config)
-    }).toThrow(/ACCOUNT/)
-  })
+      const config = { repository: "hyper" };
+      new Cache(config);
+    }).toThrow(/ACCOUNT/);
+  });
 
-  it('should throw when repository is not defined', () => {
+  it("should throw when repository is not defined", () => {
     expect(() => {
-      const config = { account: 'zeit' }
-      new Cache(config)
-    }).toThrow(/REPOSITORY/)
-  })
+      const config = { account: "zeit" };
+      new Cache(config);
+    }).toThrow(/REPOSITORY/);
+  });
 
-  it('should throw when token is defined and url is not', () => {
+  it("should throw when token is defined and url is not", () => {
     expect(() => {
-      const config = { account: 'zeit', repository: 'hyper', token: 'abc' }
-      new Cache(config)
-    }).toThrow(/URL/)
-  })
+      const config = { account: "zeit", repository: "hyper", token: "abc" };
+      new Cache(config);
+    }).toThrow(/URL/);
+  });
 
-  it('should run without errors', () => {
+  it("should NOT throw when URL is not set but deployed_to_now is true", () => {
     const config = {
-      account: 'zeit',
-      repository: 'hyper',
-      token: process.env.TOKEN,
-      url: process.env.URL
-    }
+      account: "zeit",
+      repository: "hyper",
+      token: "abc",
+      deployed_to_now: true,
+    };
+    new Cache(config);
+  });
 
-    new Cache(config)
-  })
-
-  it('should refresh the cache', async () => {
+  it("should run without errors", () => {
     const config = {
-      account: 'zeit',
-      repository: 'hyper',
+      account: "zeit",
+      repository: "hyper",
       token: process.env.TOKEN,
-      url: process.env.URL
-    }
+      url: process.env.URL,
+    };
 
-    const cache = new Cache(config)
-    const storage = await cache.loadCache()
+    new Cache(config);
+  });
 
-    expect(typeof storage.version).toBe('string')
-    expect(typeof storage.platforms).toBe('object')
-  })
-
-  it('should set platforms correctly', async () => {
+  it("should refresh the cache", async () => {
     const config = {
-      account: 'zeit',
-      repository: 'hyper',
+      account: "zeit",
+      repository: "hyper",
       token: process.env.TOKEN,
-      url: process.env.URL
-    }
+      url: process.env.URL,
+    };
 
-    const cache = new Cache(config)
-    const storage = await cache.loadCache()
+    const cache = new Cache(config);
+    const storage = await cache.loadCache();
 
-    console.log(storage.platforms.darwin)
-  })
-})
+    expect(typeof storage.version).toBe("string");
+    expect(typeof storage.platforms).toBe("object");
+  });
+
+  it("should set platforms correctly", async () => {
+    const config = {
+      account: "zeit",
+      repository: "hyper",
+      token: process.env.TOKEN,
+      url: process.env.URL,
+    };
+
+    const cache = new Cache(config);
+    const storage = await cache.loadCache();
+
+    console.log(storage.platforms.darwin);
+  });
+});
