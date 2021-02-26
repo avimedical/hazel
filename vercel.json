@@ -1,11 +1,4 @@
 {
-  "version": 2,
-  "env": {
-      "ACCOUNT": "avimedical",
-      "REPOSITORY": "practice-web-app",
-      "TOKEN": "@github-access-token",
-      "URL": "http://localhost:3000"
-  },
   "builds": [
       {
           "src": "lib/*.js",
